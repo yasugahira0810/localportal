@@ -3,29 +3,18 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Angularの練習</title>
+    <title>localportal</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.min.js"></script>
     <script src="scripts/myscript.js"></script>
-    <style>
-        .done-true {
-            color: gray;
-            text-decoration: line-through;
-        }
-    </style>
 </head>
 
 <body>
-    <h1>Todo list</h1>
+    <h1>link list</h1>
     <div ng-controller="MainController">
-        <p>Finished Task: {{getDoneCount()}} / {{tasks.length}}
-            <button ng-click="deleteDone()">Delete Finished</button>
-        </p>
         <ul>
-            <!--li ng-repeat="task in $storage.tasks"-->
             <li ng-repeat="task in $storage.tasks">
-                <input type="checkbox" ng-model="task.done">
-                <span class="done-{{task.done}}">{{task.body}}</span>
+                <span>{{task.url}}</span>
                 <a href ng-click="$storage.tasks.splice($index,1)">[x]</a>
             </li>
         </ul>
