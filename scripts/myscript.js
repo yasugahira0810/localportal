@@ -14,7 +14,8 @@ angular.module('myapp', ['ngStorage'])
 
             $scope.addNew = function() {
                 $scope.$storage.tasks.push({
-                    "url": $scope.newTaskBody,
+                    "title": $scope.newTaskTitle,
+                    "url": $scope.newTaskUrl,
                     "date": new Date()
                 });
                 $scope.newTaskBody = '';
