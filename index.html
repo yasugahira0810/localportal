@@ -4,25 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <title>localportal</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular-sanitize.min.js"></script>
     <script src="scripts/myscript.js"></script>
 </head>
 
 <body>
     <h1>link list</h1>
     <div ng-controller="MainController">
-        <ul>
-            <li ng-repeat="task in $storage.tasks">
-                <span>登録名:{{task.title}}URL:{{task.url}}日付:{{task.date | date: 'yyyy年M月d日（EEE）a hh時mm分ss秒'}}</span>
-                <a href ng-click="$storage.tasks.splice($index,1)">[x]</a>
-            </li>
-        </ul>
-        <form ng-submit="addNew()">
-            <label>登録名:<input type="text" ng-model="newTaskTitle"></label>
-            <label>URL:<input type="url" ng-model="newTaskUrl"></label>
-            <input type="submit" value="add">
-        </form>
+        <table class="table">
+            <tr>
+                <th>登録名</th>
+                <th>URL</th>
+                <th>日付</th>
+                <th>削除ボタン</td>
+            </tr>
+            <tr ng-repeat="task in $storage.tasks">
+                <td>{{task.title}}</td>
+                <td><div ng-bind-html="task.url | linky"></div></td>
+                <td>{{task.date | date: 'yyyy年M月d日（EEE）a hh時mm分ss秒'}}</td>
+                <td><a href ng-click="$storage.tasks.splice($index,1)">[x]</a></td>
+            </tr>
+            <form ng-submit="addNew()">
+                <label>登録名:<input type="text" ng-model="newTaskTitle"></label>
+                <label>URL:<input type="url" ng-model="newTaskUrl"></label>
+                <input type="submit" value="add">
+            </form>
+        </table>
     </div>
 </body>
 

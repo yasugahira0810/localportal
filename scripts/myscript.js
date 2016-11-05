@@ -1,4 +1,4 @@
-angular.module('myapp', ['ngStorage'])
+angular.module('myapp', ['ngStorage', 'ngSanitize'])
     .controller('MainController', ['$scope', '$localStorage',
         function($scope, $localStorage) {
             $scope.$storage = $localStorage;
