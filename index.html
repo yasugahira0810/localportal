@@ -23,10 +23,10 @@
         </p>
         <ul>
             <!--li ng-repeat="task in $storage.tasks"-->
-            <li ng-repeat="task in tasks">
+            <li ng-repeat="task in $storage.tasks">
                 <input type="checkbox" ng-model="task.done">
                 <span class="done-{{task.done}}">{{task.body}}</span>
-                <a href ng-click="tasks.splice($index,1)">[x]</a>
+                <a href ng-click="$storage.tasks.splice($index,1)">[x]</a>
             </li>
         </ul>
         <form ng-submit="addNew()">

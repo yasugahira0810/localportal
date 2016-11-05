@@ -2,7 +2,7 @@ angular.module('myapp', ['ngStorage'])
     .controller('MainController', ['$scope', '$localStorage',
         function($scope, $localStorage) {
             $scope.$storage = $localStorage;
-            $scope.tasks = $scope.$storage.tasks || [{
+            $scope.$storage.tasks = $scope.$storage.tasks || [{
                 "body": "do this 1",
                 "done": false
             }, {
@@ -17,7 +17,7 @@ angular.module('myapp', ['ngStorage'])
             }];
 
             $scope.addNew = function() {
-                $scope.tasks.push({
+                $scope.$storage.tasks.push({
                     "body": $scope.newTaskBody,
                     "done": false
                 });
@@ -25,28 +25,17 @@ angular.module('myapp', ['ngStorage'])
             }
             $scope.getDoneCount = function() {
                 var count = 0;
-                angular.forEach($scope.tasks, function(task) {
+                angular.forEach($scope.$storage.tasks, function(task) {
                     count += task.done ? 1 : 0;
                 });
                 return count;
             }
             $scope.deleteDone = function() {
-                var oldTasks = $scope.tasks;
-                $scope.tasks = [];
+                var oldTasks = $scope.$storage.tasks;
+                $scope.$storage.tasks = [];
                 angular.forEach(oldTasks, function(task) {
-                    if (!task.done) $scope.tasks.push(task);
+                    if (!task.done) $scope.$storage.tasks.push(task);
                 });
             }
-
-            $scope.$storage.tasks = $scope.tasks;
-            $scope.$watch('tasks', function() {
-                $scope.$storage.tasks = $scope.tasks;
-            });
-
-            $scope.$watch(function() {
-                return angular.toJson($scope.$storage);
-            }, function() {
-                $scope.tasks = $scope.$storage.tasks;
-            });
         }
     ]);
