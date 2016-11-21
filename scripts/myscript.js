@@ -1,6 +1,6 @@
 angular.module('myapp', ['ngStorage', 'ngSanitize'])
-    .controller('MainController', ['$scope', '$localStorage',
-        function($scope, $localStorage) {
+    .controller('MainController', ['$scope', '$localStorage', '$log',
+        function($scope, $localStorage, $log) {
             $scope.$storage = $localStorage;
             $scope.$storage.tasks = $scope.$storage.tasks || [{
                 "title": "ngStorage",
@@ -19,6 +19,14 @@ angular.module('myapp', ['ngStorage', 'ngSanitize'])
                     "date": new Date()
                 });
                 $scope.newTaskBody = '';
+            }
+
+            $scope.bulkImport = function() {
+                importJson = angular.fromJson($scope.importStr);
+                $log.log(importJson);
+                for (i = 0; i < importJson.length; i++) {
+                    $scope.$storage.tasks.push(importJson[i]);
+                }
             }
         }
     ]);
