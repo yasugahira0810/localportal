@@ -27,13 +27,22 @@
                 <td>{{task.date | date: 'yyyy年M月d日（EEE）a hh時mm分ss秒'}}</td>
                 <td><a href ng-click="$storage.tasks.splice($index,1)">[x]</a></td>
             </tr>
+          </table>
+
+            <p>
             <form ng-submit="addNew()">
                 <label>登録名:<input type="text" ng-model="newTaskTitle"></label>
                 <label>URL:<input type="url" ng-model="newTaskUrl"></label>
                 <input type="submit" value="add">
             </form>
-        </table>
+          </p>
+          <p>
+            <form ng-submit="bulkImport()">
+                <label>登録文:</label><bt>
+                  <textarea ng-model="importStr" cols="100" rows="12" placeholder="JSON形式で入力してください"></textarea>
+                <input type="submit" value="add">
+            </form>
+          </p>
     </div>
 </body>
-
 </html>
