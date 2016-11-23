@@ -51,14 +51,20 @@
             </tbody>
         </table>
 
-        <form ng-submit="bulkImport()" class="form-inline">
-            <div class="form_group">
-                <label for="bulkName">登録文</label>
-                <textarea ng-model="importStr" class="form-control" id="bulkName" cols="100" rows="6" placeholder="JSON形式で入力してください"></textarea>
-                <button type="submit" class="btn btn-default">Submit</button>
-            </div>
+        <form>
+            <label for="displayData">登録済JSON表示：</label>
+            <input id="displayData" type="checkbox" ng-model="showData" />
         </form>
+        <div id="panel" ng-show="showData">
+            <pre>{{ $storage.tasks | json }}</pre>
+        </div>
 
+        <form ng-submit="bulkImport()" class="form-inline">
+            <label for="bulkData">JSON登録欄表示：</label>
+            <input id="bulkData" type="checkbox" ng-model="showField" /></br>
+            <textarea ng-model="importStr" ng-show="showField" class="form-control" id="bulkData" cols="100" rows="6" placeholder="JSON形式で入力してください"></textarea>
+            <button type="submit" class="btn btn-default" ng-show="showField">Submit</button>
+        </form>
     </div>
 </body>
 
