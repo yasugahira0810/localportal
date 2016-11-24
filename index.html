@@ -40,13 +40,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="task in $storage.tasks">
-                    <td>{{task.title}}</td>
+                <tr ng-repeat="link in $storage.links">
+                    <td>{{link.title}}</td>
                     <td>
-                        <div ng-bind-html="task.url | linky"></div>
+                        <div ng-bind-html="link.url | linky"></div>
                     </td>
-                    <td>{{task.date | date: 'yyyy年M月d日（EEE）a hh時mm分ss秒'}}</td>
-                    <td><a href ng-click="$storage.tasks.splice($index,1)">[x]</a></td>
+                    <td>{{link.date | date: 'yyyy年M月d日（EEE）a hh時mm分ss秒'}}</td>
+                    <td><a href ng-click="$storage.links.splice($index,1)">[x]</a></td>
                 </tr>
             </tbody>
         </table>
@@ -56,7 +56,7 @@
             <input id="displayData" type="checkbox" ng-model="showData" />
         </form>
         <div id="panel" ng-show="showData">
-            <pre>{{ $storage.tasks | json }}</pre>
+            <pre>{{ $storage.links | json }}</pre>
         </div>
 
         <form ng-submit="bulkImport()" class="form-inline">

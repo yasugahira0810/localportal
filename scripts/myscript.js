@@ -2,7 +2,7 @@ angular.module('myapp', ['ngStorage', 'ngSanitize'])
     .controller('MainController', ['$scope', '$localStorage', '$log', '$filter',
         function($scope, $localStorage, $log, $filter) {
             $scope.$storage = $localStorage;
-            $scope.$storage.tasks = $scope.$storage.tasks || [{
+            $scope.$storage.links = $scope.$storage.links || [{
                 "title": "ngStorage",
                 "url": "https://github.com/gsklee/ngStorage",
                 "date": new Date()
@@ -13,7 +13,7 @@ angular.module('myapp', ['ngStorage', 'ngSanitize'])
             }];
 
             $scope.addNew = function() {
-                $scope.$storage.tasks.push({
+                $scope.$storage.links.push({
                     "title": $scope.newTaskTitle,
                     "url": $scope.newTaskUrl,
                     "date": new Date()
@@ -25,12 +25,12 @@ angular.module('myapp', ['ngStorage', 'ngSanitize'])
                 importJson = angular.fromJson($scope.importStr);
                 $log.log(importJson);
                 for (i = 0; i < importJson.length; i++) {
-                    $scope.$storage.tasks.push(importJson[i]);
+                    $scope.$storage.links.push(importJson[i]);
                 }
             }
 
             $scope.sort = function(exp, reverse) {
-              $scope.$storage.tasks = $filter('orderBy')($scope.$storage.tasks, exp, reverse);
+              $scope.$storage.links = $filter('orderBy')($scope.$storage.links, exp, reverse);
             }
 
         }
