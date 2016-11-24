@@ -13,6 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular-sanitize.min.js"></script>
     <script src="scripts/myscript.js"></script>
+    <script src="i18n/angular-locale_ja-jp.js"></script>
 </head>
 
 <body>
@@ -35,7 +36,7 @@
                 <tr>
                     <th ng-click="title=!title;sort('title', title)">登録名</th>
                     <th ng-click="url=!url;sort('url', url)">URL</th>
-                    <th ng-click="date=!date;sort('date', date)">日付</th>
+                    <th ng-click="date=!date;sort('date')">日付</th>
                     <th>削除ボタン</td>
                 </tr>
             </thead>
@@ -45,7 +46,7 @@
                     <td>
                         <div ng-bind-html="link.url | linky"></div>
                     </td>
-                    <td>{{link.date | date: 'yyyy年M月d日（EEE）a hh時mm分ss秒'}}</td>
+                    <td>{{link.date | date: 'medium'}}</td>
                     <td><a href ng-click="$storage.links.splice($index,1)">[x]</a></td>
                 </tr>
             </tbody>
