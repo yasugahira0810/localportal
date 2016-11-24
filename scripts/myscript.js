@@ -1,6 +1,6 @@
 angular.module('myapp', ['ngStorage', 'ngSanitize'])
-    .controller('MainController', ['$scope', '$localStorage', '$log',
-        function($scope, $localStorage, $log) {
+    .controller('MainController', ['$scope', '$localStorage', '$log', '$filter',
+        function($scope, $localStorage, $log, $filter) {
             $scope.$storage = $localStorage;
             $scope.$storage.tasks = $scope.$storage.tasks || [{
                 "title": "ngStorage",
@@ -28,5 +28,10 @@ angular.module('myapp', ['ngStorage', 'ngSanitize'])
                     $scope.$storage.tasks.push(importJson[i]);
                 }
             }
+
+            $scope.sort = function(exp, reverse) {
+              $scope.$storage.tasks = $filter('orderBy')($scope.$storage.tasks, exp, reverse);
+            }
+
         }
     ]);

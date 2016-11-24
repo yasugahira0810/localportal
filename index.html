@@ -33,9 +33,9 @@
         <table class="table table-striped table-bordered">
             <thead>
                 <tr>
-                    <th>登録名</th>
-                    <th>URL</th>
-                    <th>日付</th>
+                    <th ng-click="title=!title;sort('title', title)">登録名</th>
+                    <th ng-click="url=!url;sort('url', url)">URL</th>
+                    <th ng-click="date=!date;sort('date', date)">日付</th>
                     <th>削除ボタン</td>
                 </tr>
             </thead>
