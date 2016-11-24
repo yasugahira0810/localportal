@@ -36,17 +36,17 @@
                 <tr>
                     <th ng-click="title=!title;sort('title', title)">登録名</th>
                     <th ng-click="url=!url;sort('url', url)">URL</th>
-                    <th ng-click="date=!date;sort('date')">日付</th>
+                    <th ng-click="date=!date;sort('date', date)">日付</th>
+                    <th ng-click="count=!count;sort('count', count)">クリック回数</th>
                     <th>削除ボタン</td>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="link in $storage.links">
                     <td>{{link.title}}</td>
-                    <td>
-                        <div ng-bind-html="link.url | linky"></div>
-                    </td>
+                    <td><a ng-href="{{link.url}}" ng-click="link.count = link.count + 1" target="_blank">{{link.url}}</a></td>
                     <td>{{link.date | date: 'medium'}}</td>
+                    <td>{{link.count}}</td>
                     <td><a href ng-click="$storage.links.splice($index,1)">[x]</a></td>
                 </tr>
             </tbody>
