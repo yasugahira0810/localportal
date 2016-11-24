@@ -5,18 +5,21 @@ angular.module('myapp', ['ngStorage', 'ngSanitize'])
             $scope.$storage.links = $scope.$storage.links || [{
                 "title": "ngStorage",
                 "url": "https://github.com/gsklee/ngStorage",
-                "date": new Date()
+                "date": new Date(),
+                "count": 0
             }, {
                 "title": "localportal",
                 "url": "https://github.com/yasugahira0810/localportal",
-                "date": new Date()
+                "date": new Date(),
+                "count": 0
             }];
 
             $scope.addNew = function() {
                 $scope.$storage.links.push({
                     "title": $scope.newTaskTitle,
                     "url": $scope.newTaskUrl,
-                    "date": new Date()
+                    "date": new Date(),
+                    "count": 0
                 });
                 $scope.newTaskBody = '';
             }
@@ -30,7 +33,7 @@ angular.module('myapp', ['ngStorage', 'ngSanitize'])
             }
 
             $scope.sort = function(exp, reverse) {
-              $scope.$storage.links = $filter('orderBy')($scope.$storage.links, exp, reverse);
+                $scope.$storage.links = $filter('orderBy')($scope.$storage.links, exp, reverse);
             }
 
         }
