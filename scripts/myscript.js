@@ -3,25 +3,34 @@ angular.module('myapp', ['ngStorage', 'ngSanitize'])
         function($scope, $localStorage, $log, $filter) {
             $scope.$storage = $localStorage;
             $scope.$storage.links = $scope.$storage.links || [{
+                "title": "Google",
+                "url": "https://www.google.co.jp",
+                "tag": ["portal"],
+                "date": new Date(),
+                "count": 0
+            }, {
                 "title": "ngStorage",
                 "url": "https://github.com/gsklee/ngStorage",
+                "tag": ["github", "angularjs"],
                 "date": new Date(),
                 "count": 0
             }, {
                 "title": "localportal",
                 "url": "https://github.com/yasugahira0810/localportal",
+                "tag": ["github", "angularjs", "original"],
                 "date": new Date(),
                 "count": 0
             }];
 
             $scope.addNew = function() {
                 $scope.$storage.links.push({
-                    "title": $scope.newTaskTitle,
-                    "url": $scope.newTaskUrl,
+                    "title": $scope.newLinkTitle,
+                    "url": $scope.newLinkUrl,
+                    "tag": $scope.newLinkTag,
                     "date": new Date(),
                     "count": 0
                 });
-                $scope.newTaskBody = '';
+                $scope.newLinkBody = '';
             }
 
             $scope.bulkImport = function() {
