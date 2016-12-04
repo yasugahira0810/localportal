@@ -45,6 +45,14 @@ angular.module('myapp', ['ngStorage', 'ngSanitize'])
                 $scope.$storage.links = $filter('orderBy')($scope.$storage.links, exp, reverse);
             }
 
+            $scope.tags = [];
+
+            angular.forEach($scope.$storage.links, function(value, index) {
+                Array.prototype.push.apply($scope.tags, $scope.$storage.links[index].tag.split(","));
+            }, $scope.tags);
+
+            $scope.tags = $scope.tags.unique();
+            $log.log($scope.tags);
         }
     ]);
 
@@ -91,3 +99,15 @@ angular.module('myapp').directive('cmEditableText', function() {
         }
     };
 });
+
+Array.prototype.unique = function() {
+    var a = this.concat();
+    for (var i = 0; i < a.length; ++i) {
+        for (var j = i + 1; j < a.length; ++j) {
+            if (a[i] === a[j])
+                a.splice(j--, 1);
+        }
+    }
+
+    return a;
+};
