@@ -16,7 +16,7 @@
               <button type="button" class="btn btn-primary" style="margin-right: 1em;" ng-repeat="tag in tags | orderBy">{{tag}}</button>
           </span>
         </form>
-        </br>
+      </br>
 
         <form ng-submit="SearchTag1()" class="form-inline" style="display: inline">
             <span class="form-group">
@@ -62,21 +62,21 @@
             </tbody>
         </table>
 
-        <form>
+        <form class="form-inline" style="display: inline">
             <label for="displayForm">登録欄表示：</label>
             <input id="displayForm" type="checkbox" ng-model="showForm" />
         </form>
         <div id="panel" ng-show="showForm">
             <form ng-submit="addNew()" class="form-inline">
-                <div class="form-group">
+                <div class="form-group" style="display: inline">
                     <label for="inputName">登録名</label>
                     <input type="text" ng-model="newLinkTitle" class="form-control" id="inputName" placeholder="Google">
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="display: inline">
                     <label for="inputUrl">URL</label>
                     <input type="url" ng-model="newLinkUrl" class="form-control" id="inputUrl" size=30 placeholder="https://www.google.co.jp/">
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="display: inline">
                     <label for="inputTag">タグ</label>
                     <input type="text" ng-model="newLinkTag" ng-list=";" class="form-control" id="inputTag" size=30 placeholder="github;angularjs;original">
                 </div>
@@ -84,8 +84,9 @@
                 <button type="reset" class="btn btn-default">Reset</button>
             </form>
         </div>
+      </br>
 
-        <form>
+        <form class="form-inline" style="display: inline">
             <label for="displayData">登録済JSON表示：</label>
             <input id="displayData" type="checkbox" ng-model="showData" />
         </form>
