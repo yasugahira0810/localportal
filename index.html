@@ -13,7 +13,7 @@
         <form ng-submit="SelectTag()" class="form-inline" style="display: inline">
             <span class="form-group">
               <label for="SearchTag1">タグ選択</label>
-              <span class="label label-primary" style="margin-right: 1em;">{{tags}}</span>
+              <button type="button" class="btn btn-primary" style="margin-right: 1em;" ng-repeat="tag in tags | orderBy">{{tag}}</button>
           </span>
         </form>
         </br>
@@ -85,7 +85,6 @@
             </form>
         </div>
 
-
         <form>
             <label for="displayData">登録済JSON表示：</label>
             <input id="displayData" type="checkbox" ng-model="showData" />
@@ -102,6 +101,7 @@
             <button type="reset" class="btn btn-default" ng-show="showField">Reset</button>
         </form>
     </div>
+
     <!-- Import Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
@@ -112,6 +112,7 @@
     <script src="scripts/angular-sanitize.min.js"></script>
     <script src="scripts/myscript.js"></script>
     <script src="i18n/angular-locale_ja-jp.js"></script>
+
 </body>
 
 </html>
