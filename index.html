@@ -13,7 +13,7 @@
         <form ng-submit="SelectTag()" class="form-inline" style="display: inline">
             <span class="form-group">
               <label for="SearchTag1">タグ選択</label>
-              <button type="button" class="btn btn-primary" style="margin-right: 1em;" ng-repeat="tag in tags | orderBy">{{tag}}</button>
+              <button type="button" class="btn btn-primary" style="margin-right: 1em;" ng-repeat="tag in tags | orderBy" ng-click="flag = !flag" ng-class="{'active' : flag}">{{tag}}</button>
           </span>
         </form>
       </br>
