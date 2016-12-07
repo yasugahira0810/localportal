@@ -45,14 +45,23 @@ angular.module('myapp', ['ngStorage', 'ngSanitize'])
                 $scope.$storage.links = $filter('orderBy')($scope.$storage.links, exp, reverse);
             }
 
-            $scope.tags = [];
+            $scope.uniquetags = [];
 
             angular.forEach($scope.$storage.links, function(value, index) {
-                Array.prototype.push.apply($scope.tags, $scope.$storage.links[index].tag.split(","));
-            }, $scope.tags);
+                Array.prototype.push.apply($scope.uniquetags, $scope.$storage.links[index].tag.split(","));
+            }, $scope.uniquetags);
 
-            $scope.tags = $scope.tags.unique();
-            $log.log($scope.tags);
+            $scope.uniquetags = $scope.uniquetags.unique();
+
+            $scope.selecttags = new Array($scope.uniquetags.length);
+            for (i = 0; i < $scope.selecttags.length; i++) {
+                $scope.selecttags[i] = {
+                    "tag": $scope.uniquetags[i],
+                    "flag": false
+                };
+            };
+            $log.log($scope.selecttags);
+
         }
     ]);
 

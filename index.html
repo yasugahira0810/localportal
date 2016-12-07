@@ -13,7 +13,7 @@
         <form ng-submit="SelectTag()" class="form-inline" style="display: inline">
             <span class="form-group">
               <label for="SearchTag1">タグ選択</label>
-              <button type="button" class="btn btn-primary" style="margin-right: 1em;" ng-repeat="tag in tags | orderBy" ng-click="flag = !flag" ng-class="{'active' : flag}">{{tag}}</button>
+              <button type="button" class="btn btn-primary" style="margin-right: 1em;" ng-repeat="selecttag in selecttags | orderBy" ng-click="selecttag.flag = !selecttag.flag" ng-class="{'active' : selecttag.flag}">{{selecttag.tag}}</button>
           </span>
         </form>
       </br>
@@ -51,7 +51,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="link in $storage.links | filter:searchTag1 | filter:searchTag2">
+                <tr ng-repeat="link in $storage.links | filter:searchTag1 | filter:searchTag2 | filter:searchTag3">
                     <td cm-editable-text ng-model="link.title"></td>
                     <td><a ng-href="{{link.url}}" ng-click="link.count = link.count + 1" target="_blank">{{link.url}}</a></td>
                     <td cm-editable-text ng-model="link.tag"></td>
