@@ -10,9 +10,18 @@
     <h1 class="text-center text-muted">localportal</h1>
     <div ng-controller="MainController">
 
+        <form ng-submit="SelectTag()" class="form-inline" style="display: inline">
+            <span class="form-group">
+              <label for="selectTag">タグ選択</label>
+              <button type="button" class="btn btn-primary" style="margin-right: 1em;" ng-repeat="selecttag in selecttags | orderBy" ng-click="selecttag.flag = true;select3Tag()" ng-class="{'active' : selecttag.flag}">{{selecttag.tag}}</button>
+              <button type="reset" class="btn btn-default" ng-click="clearTag()">Reload</button>
+          </span>
+        </form>
+      </br>
+
         <form ng-submit="SearchTag1()" class="form-inline" style="display: inline">
             <span class="form-group">
-                <label for="SearchTag1">タグ絞り込み</label>
+                <label for="SearchTag1">タグ検索</label>
                 <input type="text" ng-model="searchTag1.tag" class="form-control" id="searchTag1" placeholder="angularjs">
             </span>
         </form>
@@ -43,7 +52,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="link in $storage.links | filter:searchTag1 | filter:searchTag2">
+                <tr ng-repeat="link in $storage.links | filter:selectTag[0] | filter:selectTag[1] | filter:selectTag[2]| filter:searchTag1 | filter:searchTag2 | filter:searchTag3">
                     <td cm-editable-text ng-model="link.title"></td>
                     <td><a ng-href="{{link.url}}" ng-click="link.count = link.count + 1" target="_blank">{{link.url}}</a></td>
                     <td cm-editable-text ng-model="link.tag"></td>
@@ -54,21 +63,21 @@
             </tbody>
         </table>
 
-        <form>
+        <form class="form-inline" style="display: inline">
             <label for="displayForm">登録欄表示：</label>
             <input id="displayForm" type="checkbox" ng-model="showForm" />
         </form>
         <div id="panel" ng-show="showForm">
             <form ng-submit="addNew()" class="form-inline">
-                <div class="form-group">
+                <div class="form-group" style="display: inline">
                     <label for="inputName">登録名</label>
                     <input type="text" ng-model="newLinkTitle" class="form-control" id="inputName" placeholder="Google">
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="display: inline">
                     <label for="inputUrl">URL</label>
                     <input type="url" ng-model="newLinkUrl" class="form-control" id="inputUrl" size=30 placeholder="https://www.google.co.jp/">
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="display: inline">
                     <label for="inputTag">タグ</label>
                     <input type="text" ng-model="newLinkTag" ng-list=";" class="form-control" id="inputTag" size=30 placeholder="github;angularjs;original">
                 </div>
@@ -76,9 +85,9 @@
                 <button type="reset" class="btn btn-default">Reset</button>
             </form>
         </div>
+      </br>
 
-
-        <form>
+        <form class="form-inline" style="display: inline">
             <label for="displayData">登録済JSON表示：</label>
             <input id="displayData" type="checkbox" ng-model="showData" />
         </form>
@@ -94,6 +103,7 @@
             <button type="reset" class="btn btn-default" ng-show="showField">Reset</button>
         </form>
     </div>
+
     <!-- Import Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
@@ -102,8 +112,9 @@
     <script src="scripts/angular.min.js"></script>
     <script src="scripts/ngStorage.min.js"></script>
     <script src="scripts/angular-sanitize.min.js"></script>
-    <script src="scripts/myscript.min.js"></script>
+    <script src="scripts/myscript.js"></script>
     <script src="i18n/angular-locale_ja-jp.js"></script>
+
 </body>
 
 </html>

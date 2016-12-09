@@ -45,6 +45,44 @@ angular.module('myapp', ['ngStorage', 'ngSanitize'])
                 $scope.$storage.links = $filter('orderBy')($scope.$storage.links, exp, reverse);
             }
 
+            $scope.uniquetags = [];
+
+            angular.forEach($scope.$storage.links, function(value, index) {
+                Array.prototype.push.apply($scope.uniquetags, $scope.$storage.links[index].tag.split(","));
+            }, $scope.uniquetags);
+
+            $scope.uniquetags = $scope.uniquetags.unique();
+
+            $scope.selecttags = new Array($scope.uniquetags.length);
+            for (i = 0; i < $scope.selecttags.length; i++) {
+                $scope.selecttags[i] = {
+                    "tag": $scope.uniquetags[i],
+                    "flag": false
+                };
+            };
+
+            $scope.select3Tag = function() {
+                tag_count = 0;
+                $scope.selectTag = [];
+                angular.forEach($scope.selecttags, function(value, index) {
+                    if ($scope.selecttags[index].flag == true) {
+                        if (tag_count < 3) {
+                            $scope.selectTag[tag_count] = $scope.selecttags[index].tag;
+                            tag_count++;
+                        } else if (tag_count >= 3) {
+                          $scope.selecttags[index].flag = false;
+                            window.alert("タグは3つまでしか選択できません");
+                        }
+                    }
+                })
+            }
+
+            $scope.clearTag = function() {
+                angular.forEach($scope.selecttags, function(value, index) {
+                    location.reload();
+                })
+            }
+
         }
     ]);
 
@@ -91,3 +129,15 @@ angular.module('myapp').directive('cmEditableText', function() {
         }
     };
 });
+
+Array.prototype.unique = function() {
+    var a = this.concat();
+    for (var i = 0; i < a.length; ++i) {
+        for (var j = i + 1; j < a.length; ++j) {
+            if (a[i] === a[j])
+                a.splice(j--, 1);
+        }
+    }
+
+    return a;
+};
