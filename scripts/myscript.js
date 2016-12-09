@@ -60,7 +60,28 @@ angular.module('myapp', ['ngStorage', 'ngSanitize'])
                     "flag": false
                 };
             };
-            $log.log($scope.selecttags);
+
+            $scope.select3Tag = function() {
+                tag_count = 0;
+                $scope.selectTag = [];
+                angular.forEach($scope.selecttags, function(value, index) {
+                    if ($scope.selecttags[index].flag == true) {
+                        if (tag_count < 3) {
+                            $scope.selectTag[tag_count] = $scope.selecttags[index].tag;
+                            tag_count++;
+                        } else if (tag_count >= 3) {
+                          $scope.selecttags[index].flag = false;
+                            window.alert("タグは3つまでしか選択できません");
+                        }
+                    }
+                })
+            }
+
+            $scope.clearTag = function() {
+                angular.forEach($scope.selecttags, function(value, index) {
+                    location.reload();
+                })
+            }
 
         }
     ]);
