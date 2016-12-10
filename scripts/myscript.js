@@ -5,19 +5,19 @@ angular.module('myapp', ['ngStorage', 'ngSanitize'])
             $scope.$storage.links = $scope.$storage.links || [{
                 "title": "Google",
                 "url": "https://www.google.co.jp",
-                "tag": ["portal"],
+                "tag": "portal",
                 "date": new Date(),
                 "count": 0
             }, {
                 "title": "ngStorage",
                 "url": "https://github.com/gsklee/ngStorage",
-                "tag": ["github", "angularjs"],
+                "tag": "github,angularjs",
                 "date": new Date(),
                 "count": 0
             }, {
                 "title": "localportal",
                 "url": "https://github.com/yasugahira0810/localportal",
-                "tag": ["github", "angularjs", "original"],
+                "tag": "github,angularjs,original",
                 "date": new Date(),
                 "count": 0
             }];
@@ -35,7 +35,6 @@ angular.module('myapp', ['ngStorage', 'ngSanitize'])
 
             $scope.bulkImport = function() {
                 importJson = angular.fromJson($scope.importStr);
-                $log.log(importJson);
                 for (i = 0; i < importJson.length; i++) {
                     $scope.$storage.links.push(importJson[i]);
                 }
@@ -48,8 +47,10 @@ angular.module('myapp', ['ngStorage', 'ngSanitize'])
             $scope.uniquetags = [];
 
             angular.forEach($scope.$storage.links, function(value, index) {
-                Array.prototype.push.apply($scope.uniquetags, $scope.$storage.links[index].tag.split(","));
-            }, $scope.uniquetags);
+                if ($scope.$storage.links[index].tag !== undefined) {
+                    Array.prototype.push.apply($scope.uniquetags, $scope.$storage.links[index].tag.split(","));
+                }
+            });
 
             $scope.uniquetags = $scope.uniquetags.unique();
 
@@ -70,7 +71,7 @@ angular.module('myapp', ['ngStorage', 'ngSanitize'])
                             $scope.selectTag[tag_count] = $scope.selecttags[index].tag;
                             tag_count++;
                         } else if (tag_count >= 3) {
-                          $scope.selecttags[index].flag = false;
+                            $scope.selecttags[index].flag = false;
                             window.alert("タグは3つまでしか選択できません");
                         }
                     }
