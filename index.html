@@ -10,15 +10,6 @@
     <h1 class="text-center text-muted">localportal</h1>
     <div ng-controller="MainController">
 
-        <form ng-submit="SelectTag()" class="form-inline" style="display: inline">
-            <span class="form-group">
-              <label for="selectTag">タグ選択</label>
-              <button type="button" class="btn btn-primary" style="margin-right: 1em;" ng-repeat="selecttag in selecttags | orderBy" ng-click="selecttag.flag = true;select3Tag()" ng-class="{'active' : selecttag.flag}">{{selecttag.tag}}</button>
-              <button type="reset" class="btn btn-default" ng-click="clearTag()">Reload</button>
-          </span>
-        </form>
-      </br>
-
         <form ng-submit="SearchTag1()" class="form-inline" style="display: inline">
             <span class="form-group">
                 <label for="SearchTag1">タグ検索</label>
@@ -85,7 +76,7 @@
                 <button type="reset" class="btn btn-default">Reset</button>
             </form>
         </div>
-      </br>
+        </br>
 
         <form class="form-inline" style="display: inline">
             <label for="displayData">登録済JSON表示：</label>
