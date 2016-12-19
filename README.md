@@ -11,7 +11,7 @@ localportalは、HTML5のlocalstorageを使ったリンク集作成アプリで�
 
 ## Demo
 
-### リンクデータの登録
+### 【デモ１】リンクデータの登録
 
 localportalは、ブラウザからリンクデータを登録することができます。  
 このデモでは、[AngularJS公式ページのAPIドキュメント](https://docs.angularjs.org/api)をリンクデータとして登録しています。  
@@ -20,14 +20,14 @@ localportalは、ブラウザからリンクデータを登録することがで
 
 ![登録](img/Demo1_register.gif)
 
-### タグ検索
+### 【デモ２】タグ検索
 
 localportalは、タグを指定してリンクデータを絞り込むことができます。  
 このデモでは、リンクデータを「angularjs」、「event」、「doorkeeper」と絞り込み、Doorkeeperの「Angular Japan User Group」のページを開いています。
 
 ![検索](img/Demo2_search.gif)
 
-### タグ追加
+### 【デモ３】タグ追加
 
 localportalは、登録済みリンクデータのタグを更新することができます。  
 このデモでは、「リンクデータの登録」で登録した[AngularJS公式ページのAPIドキュメント](https://docs.angularjs.org/api)を「official」というタグで絞り込もうとしたところ、「official」がタグとして設定されておらず検索できなかったことから、登録済みのリンクデータに対して「official」のタグを追加してから検索をし直しています。
@@ -36,7 +36,7 @@ localportalは、登録済みリンクデータのタグを更新することが
 
 ## Requirement
 
-- 特になし
+ブラウザ以外は特になし
 
 ## Usage
 
@@ -58,7 +58,7 @@ localportalは、登録済みリンクデータのタグを更新することが
 
 ## Contribution
 
-- GitHubでIssueを立てるかTwitter(yasugahira0810)でコメントをください。
+GitHubでIssueを立てるかTwitter(yasugahira0810)でコメントを頂けると有難いです。
 
 ## Licence
 
