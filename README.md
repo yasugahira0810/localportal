@@ -20,6 +20,8 @@ localportalは、ブラウザからリンクデータを登録することがで
 
 ![登録](img/Demo1_register.gif)
 
+---
+
 ### 【デモ２】タグ検索
 
 localportalは、タグを指定してリンクデータを絞り込むことができます。  
@@ -27,12 +29,16 @@ localportalは、タグを指定してリンクデータを絞り込むことが
 
 ![検索](img/Demo2_search.gif)
 
+---
+
 ### 【デモ３】タグ追加
 
 localportalは、登録済みリンクデータのタグを更新することができます。  
 このデモでは、「リンクデータの登録」で登録した[AngularJS公式ページのAPIドキュメント](https://docs.angularjs.org/api)を「official」というタグで絞り込もうとしたところ、「official」がタグとして設定されておらず検索できなかったことから、登録済みのリンクデータに対して「official」のタグを追加してから検索をし直しています。
 
 ![タグ追加](img/Demo3_tag_add.gif)
+
+---
 
 ## Requirement
 
