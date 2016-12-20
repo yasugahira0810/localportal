@@ -44,13 +44,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="link in $storage.links | filter:selectTag[0] | filter:selectTag[1] | filter:selectTag[2]| filter:searchTag1 | filter:searchTag2 | filter:searchTag3 | limitTo: pageLimit: limitBegin">
+                    <tr ng-repeat="(id, link) in $storage.links | filter:selectTag[0] | filter:selectTag[1] | filter:selectTag[2]| filter:searchTag1 | filter:searchTag2 | filter:searchTag3 | limitTo: pageLimit: limitBegin">
                         <td cm-editable-text ng-model="link.title"></td>
                         <td><a ng-href="{{link.url}}" ng-click="link.count = link.count + 1" target="_blank">{{link.url}}</a></td>
                         <td cm-editable-text ng-model="link.tag"></td>
                         <td>{{link.date | date: 'medium'}}</td>
                         <td>{{link.count}}</td>
-                        <td><a href ng-click="$storage.links.splice($index,1)">[x]</a></td>
+                        <td><a href ng-click="$storage.links.splice(id,1)">[x]</a></td>
                     </tr>
                 </tbody>
             </table>
