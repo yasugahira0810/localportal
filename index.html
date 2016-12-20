@@ -81,7 +81,7 @@
                     <button type="reset" class="btn btn-default">Reset</button>
                 </form>
             </div>
-            </br>
+            <br>
 
             <form class="form-inline" style="display: inline">
                 <label for="displayData">登録済JSON表示：</label>
@@ -93,7 +93,7 @@
 
             <form ng-submit="bulkImport()" class="form-inline">
                 <label for="bulkData">JSON登録欄表示：</label>
-                <input id="bulkData" type="checkbox" ng-model="showField" /></br>
+                <input id="bulkData" type="checkbox" ng-model="showField" /><br>
                 <textarea ng-model="importStr" ng-show="showField" class="form-control" id="bulkData" cols="100" rows="6" placeholder="JSON形式で入力してください"></textarea>
                 <button type="submit" class="btn btn-default" ng-show="showField">Submit</button>
                 <button type="reset" class="btn btn-default" ng-show="showField">Reset</button>
