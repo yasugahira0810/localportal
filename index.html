@@ -31,6 +31,7 @@
                 <input type="text" ng-model="searchTag3.tag" class="form-control" id="searchTag3" placeholder="etc...">
             </span>
             </form>
+            <label>表示リンク数: {{filteredLinks.length}}</label>
 
             <table class="table table-striped table-bordered">
                 <thead>
@@ -44,7 +45,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="link in $storage.links | filter:selectTag[0] | filter:selectTag[1] | filter:selectTag[2]| filter:searchTag1 | filter:searchTag2 | filter:searchTag3 | limitTo: pageLimit: limitBegin">
+                    <tr ng-repeat="link in filteredLinks = ( $storage.links | filter:selectTag[0] | filter:selectTag[1] | filter:selectTag[2]| filter:searchTag1 | filter:searchTag2 | filter:searchTag3 ) | limitTo: pageLimit: limitBegin">
+
                         <td cm-editable-text ng-model="link.title"></td>
                         <td><a ng-href="{{link.url}}" ng-click="link.count = link.count + 1" target="_blank">{{link.url}}</a></td>
                         <td cm-editable-text ng-model="link.tag"></td>
@@ -56,7 +58,7 @@
             </table>
             <div class="text-center">
                 <ul class="pagination">
-                    <li class="page-item" ng-repeat="pager in pagerArr($storage.links.length / pageLimit)" ng-click="pagerClick($index)"><a href="#" class="page-link">{{pager + 1}}</a></li>
+                    <li class="page-item" ng-repeat="pager in pagerArr(filteredLinks.length / pageLimit)" ng-click="pagerClick($index)"><a href="#" class="page-link">{{pager + 1}}</a></li>
                 </ul>
             </div>
             <form class="form-inline" style="display: inline">
