@@ -2,7 +2,7 @@ function CustomFilter(linkService) {
     return function (list, searchQuery) {
         if (searchQuery) {
             // 全角スペースを半角スペースに置換
-            var query = searchQuery.replace(/　/g, " ");
+            var query = searchQuery.tag.replace(/　/g, " ");
         }
 
         // 検索フォームに文字が入力されている場合
@@ -15,7 +15,7 @@ function CustomFilter(linkService) {
             list.forEach(function (obj) {
                 // 検索キーワードでオブジェクトを探索
                 var isMatch = !queryWordArray.some(function (keyword) {
-                    return !linkService.keywordJudge(obj, keyword);
+                    return !linkService.keywordJudge(obj.tag, keyword);
                 });
 
                 // 検索キーワードがAND一致した場合、一覧に表示する配列に格納
