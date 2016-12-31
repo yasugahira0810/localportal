@@ -45,7 +45,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="link in filteredLinks = ( $storage.links | filter:selectTag[0] | filter:selectTag[1] | filter:selectTag[2]| filter:searchTag1 | filter:searchTag2 | filter:searchTag3 ) | limitTo: pageLimit: limitBegin">
+                    <tr ng-repeat="link in filteredLinks = ( $storage.links | filter:searchTag1 | filter:searchTag2 | filter:searchTag3 ) | limitTo: pageLimit: limitBegin">
 
                         <td cm-editable-text ng-model="link.title"></td>
                         <td><a ng-href="{{link.url}}" ng-click="link.count = link.count + 1" target="_blank">{{link.url}}</a></td>
