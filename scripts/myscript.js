@@ -69,7 +69,9 @@ angular.module('myapp', ['ngStorage', 'ngSanitize'])
             };
 
         }
-    ]);
+    ])
+    .service('linkService', LinkService)
+    .filter('customFilter', CustomFilter);
 
 angular.module('myapp').directive('cmEditableText', function() {
     return {
