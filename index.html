@@ -8,119 +8,49 @@
 
 <body>
 
-  <header>
-      <nav class="navbar navbar-default">
-          <div class="container">
-              <div class="navbar-header">
-                  <a class="navbar-brand" href="index.html">localportal</a>
-              </div>
+    <header>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#/">localportal</a>
+                </div>
 
-              <ul class="nav navbar-nav navbar-right">
-                  <li><a href="#/"><i class="fa fa-home"></i>Home</a></li>
-              </ul>
-          </div>
-      </nav>
-  </header>
-
-    <div class="container">
-        <div ng-controller="MainController">
-
-            <form class="form-inline">
-                <label for="SearchTag">タグ検索</label>
-                <input type="text" ng-model="searchTag.tag" class="form-control" placeholder="angularjs original etc...">
-            </form>
-
-            <label>表示リンク数: {{filteredLinks.length}}</label>
-
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th class="editableRow" ng-click="title=!title;sort('title', title)">登録名</th>
-                        <th class="editableRow" ng-click="url=!url;sort('url', url)">URL</th>
-                        <th>リンク</th>
-                        <th class="editableRow">タグ</th>
-                        <th class="editableRow" ng-click="date=!date;sort('date', date)">日付</th>
-                        <th class="editableRow" ng-click="count=!count;sort('count', count)">クリック回数</th>
-                        <th>削除ボタン</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!--tr ng-repeat="link in $storage.links | customFilter:searchTag"-->
-                    <tr ng-repeat="link in filteredLinks = ( $storage.links | customFilter:searchTag ) | limitTo: pageLimit: limitBegin">
-
-                        <td cm-editable-text ng-model="link.title"></td>
-                        <td cm-editable-text ng-model="link.url"></td>
-                        <td><a style="width:100%; height:100%; display:block;" ng-href="{{link.url}}" ng-click="link.count = link.count + 1" target="_blank">click!</a></td>
-                        <td cm-editable-text ng-model="link.tag"></td>
-                        <td>{{link.date | date: 'medium'}}</td>
-                        <td>{{link.count}}</td>
-                        <td><a href ng-click="$storage.links.splice($storage.links.indexOf(link),1)">[x]</a></td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="text-center">
-                <ul class="pagination">
-                    <li class="page-item" ng-repeat="pager in pagerArr(filteredLinks.length / pageLimit)" ng-click="pagerClick($index)"><a href="#" class="page-link">{{pager + 1}}</a></li>
+                <ul class="nav navbar-nav navbar-right">
+                  <li><a href="#/insert"><i class="fa fa-home"></i>Insert</a></li>
+                  <li><a href="#/import"><i class="fa fa-home"></i>Import</a></li>
+                  <li><a href="#/display"><i class="fa fa-home"></i>Display</a></li>
+                    <li><a href="#/"><i class="fa fa-home"></i>Home</a></li>
                 </ul>
             </div>
-            <form class="form-inline" style="display: inline">
-                <label for="displayForm">登録欄表示：</label>
-                <input id="displayForm" type="checkbox" ng-model="showForm" />
-            </form>
-            <div id="panel" ng-show="showForm">
-                <form ng-submit="addNew()" class="form-inline">
-                    <div class="form-group" style="display: inline">
-                        <label for="inputName">登録名</label>
-                        <input type="text" ng-model="newLinkTitle" class="form-control" id="inputName" placeholder="Google">
-                    </div>
-                    <div class="form-group" style="display: inline">
-                        <label for="inputUrl">URL</label>
-                        <input type="text" ng-model="newLinkUrl" class="form-control" id="inputUrl" size=30 placeholder="https://www.google.co.jp/">
-                    </div>
-                    <div class="form-group" style="display: inline">
-                        <label for="inputTag">タグ</label>
-                        <input type="text" ng-model="newLinkTag" class="form-control" id="inputTag" size=30 placeholder="github,angularjs,original">
-                    </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
-                    <button type="reset" class="btn btn-default">Reset</button>
-                </form>
-            </div>
-            <br>
+        </nav>
+    </header>
 
-            <form class="form-inline" style="display: inline">
-                <label for="displayData">登録済JSON表示：</label>
-                <input id="displayData" type="checkbox" ng-model="showData" />
-            </form>
-            <div id="panel" ng-show="showData">
-                <pre>{{ $storage.links | json }}</pre>
-            </div>
+    <div class="container">
 
-            <form ng-submit="bulkImport()" class="form-inline">
-                <label for="bulkData">JSON登録欄表示：</label>
-                <input id="bulkData" type="checkbox" ng-model="showField" /><br>
-                <textarea ng-model="importStr" ng-show="showField" class="form-control" id="bulkData" cols="100" rows="6" placeholder="JSON形式で入力してください"></textarea>
-                <button type="submit" class="btn btn-default" ng-show="showField">Submit</button>
-                <button type="reset" class="btn btn-default" ng-show="showField">Reset</button>
-            </form>
-        </div>
+        <div ng-view></div>
 
-        <!-- Import jQuery -->
-        <script src="js/jquery-3.1.1.min.js"></script>
-        <!-- Import Bootstrap -->
-        <link rel="stylesheet" href="css/bootstrap.min.css" />
-        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-        <script src="js/bootstrap.min.js"></script>
-        <!-- Import AngularJS -->
-        <script src="angularjs/angular.min.js"></script>
-        <script src="angularjs/ngStorage.min.js"></script>
-        <script src="angularjs/angular-sanitize.min.js"></script>
-        <script src="scripts/CustomFilter.js"></script>
-        <script src="scripts/LinkService.js"></script>
-        <script src="scripts/module.js"></script>
-        <script src="scripts/controller.js"></script>
-        <script src="scripts/directive.js"></script>
-        <script src="scripts/misc.js"></script>
-        <script src="i18n/angular-locale_ja-jp.js"></script>
+    </div>
+
+    <!-- Import jQuery -->
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <!-- Import Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Import AngularJS -->
+    <script src="angularjs/angular.min.js"></script>
+    <script src="angularjs/angular-route.min.js"></script>
+    <script src="angularjs/ngStorage.min.js"></script>
+    <script src="angularjs/angular-sanitize.min.js"></script>
+    <script src="scripts/CustomFilter.js"></script>
+    <script src="scripts/LinkService.js"></script>
+    <script src="scripts/module.js"></script>
+    <script src="scripts/controller.js"></script>
+    <script src="scripts/directive.js"></script>
+    <script src="scripts/misc.js"></script>
+    <script src="scripts/route.js"></script>
+    <script src="scripts/service.js"></script>
+    <script src="i18n/angular-locale_ja-jp.js"></script>
     </div>
 </body>
 

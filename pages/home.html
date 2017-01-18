@@ -1,0 +1,38 @@
+<form class="form-inline">
+    <label for="SearchTag">タグ検索</label>
+    <input type="text" ng-model="searchTag.tag" class="form-control" placeholder="angularjs original etc...">
+</form>
+
+<label>表示リンク数: {{filteredLinks.length}}</label>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th class="editableRow" ng-click="title=!title;sort('title', title)">登録名</th>
+            <th class="editableRow" ng-click="url=!url;sort('url', url)">URL</th>
+            <th>リンク</th>
+            <th class="editableRow">タグ</th>
+            <th class="editableRow" ng-click="date=!date;sort('date', date)">日付</th>
+            <th class="editableRow" ng-click="count=!count;sort('count', count)">クリック回数</th>
+            <th>削除ボタン</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!--tr ng-repeat="link in $storage.links | customFilter:searchTag"-->
+        <tr ng-repeat="link in filteredLinks = ( $storage.links | customFilter:searchTag ) | limitTo: pageLimit: limitBegin">
+
+            <td cm-editable-text ng-model="link.title"></td>
+            <td cm-editable-text ng-model="link.url"></td>
+            <td><a style="width:100%; height:100%; display:block;" ng-href="{{link.url}}" ng-click="link.count = link.count + 1" target="_blank">click!</a></td>
+            <td cm-editable-text ng-model="link.tag"></td>
+            <td>{{link.date | date: 'medium'}}</td>
+            <td>{{link.count}}</td>
+            <td><a href ng-click="$storage.links.splice($storage.links.indexOf(link),1)">[x]</a></td>
+        </tr>
+    </tbody>
+</table>
+<div class="text-center">
+    <ul class="pagination">
+        <li class="page-item" ng-repeat="pager in pagerArr(filteredLinks.length / pageLimit)" ng-click="pagerClick($index)"><a href="#/" class="page-link">{{pager + 1}}</a></li>
+    </ul>
+</div>
