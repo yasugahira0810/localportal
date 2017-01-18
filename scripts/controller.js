@@ -1,13 +1,6 @@
 localportal.controller('HomeController', ['$scope', '$localStorage', '$log', '$filter', '$location', 'storageService',
         function($scope, $localStorage, $log, $filter, $location, storageService) {
             $scope.$storage = storageService.$storage;
-            /*$scope.link_limit = 10; // Limit of link number per page
-            $scope.link_start = 0;
-            $scope.page_num = Math.floor($scope.$storage.links.length / $scope.limit_link) + 1;
-
-            $scope.pager = function(page) {
-                $scope.link_start = $scope.link_limit * page;
-            };*/
             $scope.pageLimit = 10; // リストの表示件数
             $scope.limitBegin = 0; // リストの表示開始位置
 
