@@ -1,5 +1,5 @@
-localportal.controller('MainController', ['$scope', '$localStorage', '$log', '$filter',
-        function($scope, $localStorage, $log, $filter) {
+localportal.controller('HomeController', ['$scope', '$localStorage', '$log', '$filter', '$location',
+        function($scope, $localStorage, $log, $filter, $location) {
             $scope.$storage = $localStorage;
             $scope.$storage.links = $scope.$storage.links || [{
                 "title": "Google",
@@ -20,24 +20,6 @@ localportal.controller('MainController', ['$scope', '$localStorage', '$log', '$f
                 "date": new Date(),
                 "count": 0
             }];
-
-            $scope.addNew = function() {
-                $scope.$storage.links.push({
-                    "title": $scope.newLinkTitle,
-                    "url": $scope.newLinkUrl,
-                    "tag": $scope.newLinkTag,
-                    "date": new Date(),
-                    "count": 0
-                });
-                $scope.newLinkBody = '';
-            }
-
-            $scope.bulkImport = function() {
-                importJson = angular.fromJson($scope.importStr);
-                for (i = 0; i < importJson.length; i++) {
-                    $scope.$storage.links.push(importJson[i]);
-                }
-            }
 
             $scope.sort = function(exp, reverse) {
                     $scope.$storage.links = $filter('orderBy')($scope.$storage.links, exp, reverse);
@@ -71,3 +53,33 @@ localportal.controller('MainController', ['$scope', '$localStorage', '$log', '$f
     ])
     .service('linkService', LinkService)
     .filter('customFilter', CustomFilter);
+
+localportal.controller('InsertController', ['$scope', '$localStorage', '$location',
+    function($scope, $localStorage, $location) {
+        $scope.addNew = function() {
+            $scope.$storage.links.push({
+                "title": $scope.newLinkTitle,
+                "url": $scope.newLinkUrl,
+                "tag": $scope.newLinkTag,
+                "date": new Date(),
+                "count": 0
+            });
+            $scope.newLinkBody = '';
+        }
+    }
+]);
+
+localportal.controller('ImportController', ['$scope', '$localStorage', '$location',
+    function($scope, $localStorage, $location) {
+        $scope.bulkImport = function() {
+            importJson = angular.fromJson($scope.importStr);
+            for (i = 0; i < importJson.length; i++) {
+                $scope.$storage.links.push(importJson[i]);
+            }
+        }
+    }
+]);
+
+localportal.controller('DisplayController', ['$scope', '$localStorage', '$location',
+    function($scope, $localStorage, $location) {}
+]);
