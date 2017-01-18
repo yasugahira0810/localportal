@@ -22,7 +22,8 @@
                 <thead>
                     <tr>
                         <th class="editableRow" ng-click="title=!title;sort('title', title)">登録名</th>
-                        <th ng-click="url=!url;sort('url', url)">URL</th>
+                        <th class="editableRow" ng-click="url=!url;sort('url', url)">URL</th>
+                        <th>リンク</th>
                         <th class="editableRow">タグ</th>
                         <th class="editableRow" ng-click="date=!date;sort('date', date)">日付</th>
                         <th class="editableRow" ng-click="count=!count;sort('count', count)">クリック回数</th>
@@ -34,7 +35,8 @@
                     <tr ng-repeat="link in filteredLinks = ( $storage.links | customFilter:searchTag ) | limitTo: pageLimit: limitBegin">
 
                         <td cm-editable-text ng-model="link.title"></td>
-                        <td><a ng-href="{{link.url}}" ng-click="link.count = link.count + 1" target="_blank">{{link.url}}</a></td>
+                        <td cm-editable-text ng-model="link.url"></td>
+                        <td><a style="width:100%; height:100%; display:block;" ng-href="{{link.url}}" ng-click="link.count = link.count + 1" target="_blank">click!</a></td>
                         <td cm-editable-text ng-model="link.tag"></td>
                         <td>{{link.date | date: 'medium'}}</td>
                         <td>{{link.count}}</td>
