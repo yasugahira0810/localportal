@@ -52,12 +52,12 @@
     <script src="scripts/service.js"></script>
     <script src="i18n/angular-locale_ja-jp.js"></script>
     <!-- Use embed templates to avoid  XHR call problem at IE and Chrome -->
-    <script type="text/ng-template" id="pages/display.html">
+    <script type="text/ng-template" id="display.html">
         <div id="panel">
             <pre>{{ $storage.links | json }}</pre>
         </div>
     </script>
-    <script type="text/ng-template" id="pages/home.html">
+    <script type="text/ng-template" id="home.html">
         <form class="form-inline">
             <label for="SearchTag">タグ検索</label>
             <input type="text" ng-model="searchTag.tag" class="form-control" placeholder="angularjs original etc...">
@@ -97,14 +97,14 @@
             </ul>
         </div>
     </script>
-    <script type="text/ng-template" id="pages/import.html">
+    <script type="text/ng-template" id="import.html">
         <form ng-submit="bulkImport()" class="form-inline">
             <textarea ng-model="importStr" class="form-control" id="bulkData" cols="100" rows="6" placeholder="JSON形式で入力してください"></textarea>
             <button type="submit" class="btn btn-default">Submit</button>
             <button type="reset" class="btn btn-default">Reset</button>
         </form>
     </script>
-    <script type="text/ng-template" id="pages/insert.html">
+    <script type="text/ng-template" id="insert.html">
         <div id="panel">
             <form ng-submit="addNew()" class="form-inline">
                 <div class="form-group" style="display: inline">
