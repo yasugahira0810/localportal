@@ -40,6 +40,7 @@ localportal.controller('InsertController', ['$scope', '$localStorage', '$locatio
                 "count": 0
             });
             $scope.newLinkBody = '';
+            window.location.reload();
         }
     }
 ]);
