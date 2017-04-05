@@ -15,7 +15,7 @@ function CustomFilter(linkService) {
             list.forEach(function (obj) {
                 // 検索キーワードでオブジェクトを探索
                 var isMatch = !queryWordArray.some(function (keyword) {
-                    return !linkService.keywordJudge(obj.tag, keyword);
+                    return !linkService.keywordJudge(obj.tag.toLowerCase(), keyword.toLowerCase());
                 });
 
                 // 検索キーワードがAND一致した場合、一覧に表示する配列に格納
