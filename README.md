@@ -62,7 +62,7 @@ localportalは、登録済みリンクのタグを更新することができま
 
 ### Online
 
-[GitHub Pages](https://yasugahira0810.github.io/localportal)で最新のタグのlocalportalをご利用いただけます。（現在のバージョンはv0.0.7です。）  
+[GitHub Pages](https://yasugahira0810.github.io/localportal/)で最新のタグのlocalportalをご利用いただけます。（現在のバージョンはv0.0.7です。）  
 localportalのアプリはオンラインで動きますが、リンクはローカルに保存されるので、リンクが流出することはありません。  
 予告なくアプリを変更することがあるので、こまめにリンクのバックアップを取得することをお勧めします。
 
