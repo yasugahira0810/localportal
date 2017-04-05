@@ -45,7 +45,7 @@ localportalは、登録済みリンクのタグを更新することができま
 
 ブラウザ以外は特になし
 
-## Usage
+## Function
 
 |項目|手順|
 |---|---|
@@ -58,7 +58,15 @@ localportalは、登録済みリンクのタグを更新することができま
 |リンクの一括登録|1. 「リンクのバックアップ」で作成したJSONを「JSON登録欄表示」にペーストする。</br>※*この機能はリンクのブラウザ間での共有や移行での利用を想定している。*|
 
 
-## Install
+## How to Use
+
+### Online
+
+[GitHub Pages](https://yasugahira0810.github.io/localportal)で最新のタグのlocalportalをご利用いただけます。（現在のバージョンはv0.0.7です。）  
+localportalのアプリはオンラインで動きますが、リンクはローカルに保存されるので、リンクが流出することはありません。  
+予告なくアプリを変更することがあるので、こまめにリンクのバックアップを取得することをお勧めします。
+
+### Download
 
 [GitHubのページ](https://github.com/yasugahira0810/localportal)からファイルをダウンロードして、「index.html」をブラウザで開いてください。  
 データは各ブラウザのlocalstorageに保存されるので、データを保存するためにDBを準備する必要はありません。
